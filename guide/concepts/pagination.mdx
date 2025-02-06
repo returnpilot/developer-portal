@@ -1,0 +1,122 @@
+---
+title: 'Pagination'
+description: 'Explore how to use pagination with the ReturnPilot API'
+---
+
+### Overview
+
+The ReturnPilot API uses limit-offset pagination for some of its endpoints. This allows you to retrieve a subset of the total data available, which can be useful when working with large datasets.
+
+Any endpoints that support pagination will be indicated in the documentation.
+
+#### Setting the Page Number
+
+To retrieve a specific page of data, you can use the `page` query parameter. For example, to retrieve the second page of data, you could use the following path:
+
+```
+/api/v1/shipments?page=2
+```
+
+If no `page` query parameter is passed, the API will default to the first page.
+
+#### Customizing the Page Size
+
+By default, paginated endpoints will return **20 items per page**. However, this can be customized by passing a `limit` query parameter. For example, to retrieve 50 items per page, you could use the following path:
+
+```
+/api/v1/shipments?limit=50
+```
+
+<Info>
+    If a `limit` query parameter is passed, it must be an integer between 1 and 50.
+</Info>
+
+#### Paginated Response Structure
+
+Paginated responses use the following structure:
+
+<ResponseExample>
+
+```json Example Response Structure
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Shipment One",
+      // ...
+    },
+    {
+      "id": 2,
+      "title": "Shipment Two",
+      // ...
+    }
+  ],
+  "links": {
+    "first": "https://app.returnpilot.co/api/v1/shipments?page=1",
+    "last": null,
+    "prev": null,
+    "next": "https://app.returnpilot.co/api/v1/shipments?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "path": "https://app.returnpilot.co/api/v1/shipments",
+    "per_page": 20,
+    "to": 20
+  }
+}
+```
+
+</ResponseExample>
+
+<ResponseField name="data" type="array" required>
+    The items returned in the current page. If no items are returned, this will be an empty array.
+</ResponseField>
+
+<ResponseField name="links" type="array" required>
+    URLs for the first, last, previous, and next pages.
+
+    <Expandable title="links" defaultOpen="true">
+        <ResponseField name="links.first" type="string" required>
+            The URL for the first page.
+        </ResponseField>
+
+        <ResponseField name="links.last" type="null">
+            The URL for the last page. This will always be `null`.
+        </ResponseField>
+
+        <ResponseField name="links.prev" type="string">
+            The URL for the previous page. This will be `null` if the current page is the first page.
+        </ResponseField>
+
+        <ResponseField name="links.next" type="string">
+            The URL for the next page. This will be `null` if the current page is the last page.
+        </ResponseField>
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="array" required>
+    Metadata about the current page.
+
+    <Expandable title="meta" defaultOpen="true">
+        <ResponseField name="meta.current_page" type="number" required>
+            The current page number.
+        </ResponseField>
+
+        <ResponseField name="meta.from" type="number" required>
+            The starting index of the items on the current page. For example, if the page size is 20, and the second page has been returned, this will value will be 21.
+        </ResponseField>
+
+        <ResponseField name="meta.path" type="string" required>
+            The base URL for the endpoint, excluding any pagination parameters.
+        </ResponseField>
+
+        <ResponseField name="meta.per_page" type="number" required>
+            The number of items per page.
+        </ResponseField>
+
+        <ResponseField name="meta.to" type="number" required>
+            The ending index of the items on the current page. For example, if the page size is 20, and the second page has been returned, this will value will be 40.
+        </ResponseField>
+    </Expandable>
+</ResponseField>

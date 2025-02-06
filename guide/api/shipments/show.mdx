@@ -1,0 +1,66 @@
+---
+title: 'Get Shipment'
+---
+
+import ShipmentIdField from '/snippets/api/url-parameters/shipment-id.mdx';
+
+### Overview
+
+This endpoint can be used to get a single shipment.
+
+Endpoint: `/api/v1/shipments/{shipment_id}`
+
+Method: `GET`
+
+### URL Parameters
+
+<ShipmentIdField action="retrieve"/>
+
+### Response
+
+<ResponseField name="data" type="array" required>
+    An array containing a single [Shipment](/guide/schemas/shipment) object.
+</ResponseField>
+
+<ResponseExample>
+    ```json 200
+    {
+        "data": {
+            "id": 1,
+            "status": 2,
+            "service": 1,
+            "price": 2275,
+            "carrier": 2,
+            "tracking_number": "EX18472",
+            "tracking_page": "https://provider.com/track/EX18472",
+            "product_name": "Red Shirt",
+            "product_category": "Clothing",
+            "product_value": 55.71,
+            "product_length": 6,
+            "product_width": 11,
+            "product_height": 3,
+            "product_weight": 2,
+            "origin_address_name": "Gaylord-Ratke",
+            "origin_address_email": "warren25@hotmail.com",
+            "origin_address_phone": "+12069536978",
+            "origin_address_line_1": "684 Kiley Cape",
+            "origin_address_line_2": "Suite 269",
+            "origin_address_city": "Bednarburgh",
+            "origin_address_region": "Idaho",
+            "origin_address_post_code": "29709",
+            "origin_address_country": 1,
+            "destination_address_name": "Weissnat-Larkin",
+            "destination_address_email": "weimann.aylin@gmail.com",
+            "destination_address_phone": "+12069536978",
+            "destination_address_line_1": "141 Chaim Mountains",
+            "destination_address_line_2": "Apt. 556",
+            "destination_address_city": "Lake Kamron",
+            "destination_address_region": "South Dakota",
+            "destination_address_post_code": "43650-3558",
+            "destination_address_country": 1,
+            "created_at": "2024-12-09 15:39:37",
+            "updated_at": "2024-12-09 15:39:37"
+        }
+    }
+    ```
+</ResponseExample>

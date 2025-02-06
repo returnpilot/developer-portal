@@ -1,0 +1,253 @@
+---
+title: 'Create Shipment'
+---
+
+### Overview
+
+This endpoint can be used to create a new shipment.
+
+Endpoint: `/api/v1/shipments`
+
+Method: `POST`
+
+<Warning>
+    It's advised you use the [Verify Address](/guide/api/addresses/verify) endpoint to ensure that the origin address and destination address are valid before creating the shipment.
+
+    Failure to verify the addresses may result in the shipment being lost, delayed, or extra charges being applied.
+</Warning>
+
+### Request
+
+<Note>
+    When creating a shipment, you can use either of the following two approaches to specify the origin and destination addresses:
+
+    - Using the `origin_address_id` and `destination_address_id` fields to reference existing addresses that have already been stored in ReturnPilot.
+    - Providing the address details directly in the `origin_address` and `destination_address` fields.
+
+    Please note, you can use a combination of both approaches for each shipment. For example, you can provide the `origin_address_id` and `destination_address` fields, or vice versa.
+
+    For examples of how to use these fields, see the request examples on this page.
+</Note>
+
+<ResponseField name="service" type="integer" required>
+    A [Service](/guide/enums/service) enum representing the service type to be used for the shipment.
+</ResponseField>
+
+<ResponseField name="product_name" type="string" required>
+    The name of the product. For example, "Red Shirt" or "SKU 1356284".
+</ResponseField>
+
+<ResponseField name="product_category" type="string" required>
+    The category for the product e.g. "Clothing".
+</ResponseField>
+
+<ResponseField name="product_value" type="decimal" required>
+    The value of the product in USD e.g 55.21.
+</ResponseField>
+
+<ResponseField name="product_length" type="integer" required>
+    The length of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="product_width" type="integer" required>
+    The width of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="product_height" type="integer" required>
+    The height of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="product_weight" type="integer" required>
+    The weight of the product (in pounds, rounded up).
+</ResponseField>
+
+<ResponseField name="origin_address_id" type="integer">
+    The ID of an existing address to be used as the origin address.
+
+    <Note>This field is required if the `origin_address` field is not provided.</Note>
+</ResponseField>
+
+<ResponseField name="origin_address" type="array">
+    An object containing the origin address details.
+
+    <Note>This field is required if the `origin_address_id` field is not provided.</Note>
+
+    <Expandable title="origin_address" defaultOpen="true">
+        <ResponseField name="name" type="string" required>
+            The name of the origin address. For example, "John Smith" or "Acme Products".
+        </ResponseField>
+
+        <ResponseField name="email" type="string" required>
+            The contact email for the origin address.
+        </ResponseField>
+
+        <ResponseField name="phone" type="string" required>
+            The contact number for the origin address formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+        </ResponseField>
+
+        <ResponseField name="line_1" type="string" required>
+            Line 1 of the origin address.
+        </ResponseField>
+
+        <ResponseField name="line_2" type="string">
+            Line 2 of the origin address.
+        </ResponseField>
+
+        <ResponseField name="city" type="string" required>
+            The city of the origin address.
+        </ResponseField>
+
+        <ResponseField name="region" type="string" required>
+            The region of the origin address.
+        </ResponseField>
+
+        <ResponseField name="post_code" type="string" required>
+            The post code of the origin address.
+        </ResponseField>
+
+        <ResponseField name="country" type="integer" required>
+            A [Country](/guide/enums/countries) enum representing the country of the origin address.
+        </ResponseField>
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="destination_address_id" type="integer">
+    The ID of an existing address to be used as the destination address.
+
+    <Note>This field is required if the `destination_address` field is not provided.</Note>
+</ResponseField>
+
+<ResponseField name="destination_address" type="array">
+    An object containing the destination address details.
+
+    <Note>This field is required if the `destination_address_id` field is not provided.</Note>
+
+    <Expandable title="destination_address" defaultOpen="true">
+        <ResponseField name="name" type="string" required>
+            The name of the destination address. For example, "John Smith" or "Acme Products".
+        </ResponseField>
+
+        <ResponseField name="email" type="string" required>
+            The contact email for the destination address.
+        </ResponseField>
+
+        <ResponseField name="phone" type="string" required>
+            The contact number for the destination address formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+        </ResponseField>
+
+        <ResponseField name="line_1" type="string" required>
+            Line 1 of the destination address.
+        </ResponseField>
+
+        <ResponseField name="line_2" type="string">
+            Line 2 of the destination address.
+        </ResponseField>
+
+        <ResponseField name="city" type="string" required>
+            The city of the destination address.
+        </ResponseField>
+
+        <ResponseField name="region" type="string" required>
+            The region of the destination address.
+        </ResponseField>
+
+        <ResponseField name="post_code" type="string" required>
+            The post code of the destination address.
+        </ResponseField>
+
+        <ResponseField name="country" type="integer" required>
+            A [Country](/guide/enums/countries) enum representing the country of the destination address.
+        </ResponseField>
+    </Expandable>
+</ResponseField>
+
+### Response
+
+<ResponseField name="id" type="integer" required>
+    The ID of the newly created shipment.
+</ResponseField>
+
+<RequestExample>
+    ```json Request (with address IDs)
+    {
+        "service": 1,
+        "product_name": "Red Shirt",
+        "product_category": "Clothing",
+        "product_value": 55.71,
+        "product_length": 6,
+        "product_width": 11,
+        "product_height": 3,
+        "product_weight": 2,
+        "origin_address_id": 123,
+        "destination_address_id": 456,
+    }
+    ```
+
+    ```json Request (with address details)
+    {
+        "service": 1,
+        "product_name": "Red Shirt",
+        "product_category": "Clothing",
+        "product_value": 55.71,
+        "product_length": 6,
+        "product_width": 11,
+        "product_height": 3,
+        "product_weight": 2,
+        "origin_address": {
+            "name": "Schaefer, Nolan and Wehner",
+            "email": "dave45@gmail.com",
+            "phone": "+12069536978",
+            "line_1": "492 Quitzon Avenue Apt. 157",
+            "line_2": "Apt. 027",
+            "city": "Gustside",
+            "region": "Massachusetts",
+            "post_code": "17594-7013",
+            "country": 1
+        },
+        "destination_address": {
+            "name": "Krajcik, Kuhn and Eichmann",
+            "email": "teresa93@gmail.com",
+            "phone": "+12069536978",
+            "line_1": "1712 Marina Ramp Suite 512",
+            "line_2": "Apt. 235",
+            "city": "Port Marlon",
+            "region": "Indiana",
+            "post_code": "62893",
+            "country": 1
+        }
+    }
+    ```
+
+    ```json Request (mixed)
+    {
+        "service": 1,
+        "product_name": "Red Shirt",
+        "product_category": "Clothing",
+        "product_value": 55.71,
+        "product_length": 6,
+        "product_width": 11,
+        "product_height": 3,
+        "product_weight": 2,
+        "origin_address_id": 123,
+        "destination_address": {
+            "name": "Krajcik, Kuhn and Eichmann",
+            "email": "teresa93@gmail.com",
+            "phone": "+12069536978",
+            "line_1": "1712 Marina Ramp Suite 512",
+            "line_2": "Apt. 235",
+            "city": "Port Marlon",
+            "region": "Indiana",
+            "post_code": "62893",
+            "country": 1
+        }
+    }
+    ```
+</RequestExample>
+
+<ResponseExample>
+    ```json 201
+    {
+        "id": 10011
+    }
+    ```
+</ResponseExample>

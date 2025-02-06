@@ -1,0 +1,27 @@
+---
+title: 'Delete Shipment'
+---
+
+import ShipmentIdField from '/snippets/api/url-parameters/shipment-id.mdx';
+
+### Overview
+
+This endpoint can be used to delete a shipment.
+
+Endpoint: `/api/v1/shipments/{shipment_id}`
+
+Method: `DELETE`
+
+### URL Parameters
+
+<ShipmentIdField action="delete"/>
+
+### Response
+
+If the shipment is successfully deleted, the API will return a `204 No Content` status code.
+
+<ResponseExample>
+    ```text 204
+    No Content
+    ```
+</ResponseExample>

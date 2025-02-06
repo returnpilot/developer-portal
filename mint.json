@@ -1,0 +1,121 @@
+{
+    "$schema" : "https://mintlify.com/schema.json",
+    "name"    : "Developer Portal",
+    "logo"    : {
+        "dark"  : "/assets/banner-dark.svg",
+        "light" : "/assets/banner-light.svg"
+    },
+    "favicon" : "/assets/logo.svg",
+    "colors" : {
+        "primary" : "#0D9373",
+        "light"   : "#07C983",
+        "dark"    : "#0D9373",
+        "anchors" : {
+            "from" : "#0D9373",
+            "to"   : "#07C983"
+        }
+    },
+    "codeBlock" : {
+        "mode" : "auto"
+    },
+    "navigation" : [
+        {
+            "group" : "Get Started",
+            "pages" : [
+                "guide/getting-started/introduction",
+                "guide/getting-started/updates"
+            ]
+        },
+        {
+            "group" : "Concepts",
+            "pages" : [
+                "guide/concepts/requests",
+                "guide/concepts/responses",
+                "guide/concepts/rate-limiting",
+                "guide/concepts/pagination",
+                "guide/concepts/formatting"
+            ]
+        },
+        {
+            "group" : "Libraries",
+            "pages" : [
+                "guide/libraries/introduction"
+            ]
+        },
+        {
+            "group" : "API Endpoints",
+            "pages" : [
+                {
+                    "group": "Products",
+                    "pages": [
+                        "guide/api/products/list",
+                        "guide/api/products/show",
+                        "guide/api/products/create",
+                        "guide/api/products/update",
+                        "guide/api/products/delete"
+                    ]
+                },
+                {
+                    "group": "Addresses",
+                    "pages": [
+                        "guide/api/addresses/list",
+                        "guide/api/addresses/show",
+                        "guide/api/addresses/create",
+                        "guide/api/addresses/update",
+                        "guide/api/addresses/delete",
+                        "guide/api/addresses/verify"
+                    ]
+                },
+                {
+                    "group": "Shipments",
+                    "pages": [
+                        "guide/api/shipments/list",
+                        "guide/api/shipments/show",
+                        "guide/api/shipments/create",
+                        "guide/api/shipments/update",
+                        "guide/api/shipments/delete"
+                    ]
+                },
+                {
+                    "group": "Checkout",
+                    "pages": [
+                        "guide/api/checkout/create",
+                        "guide/api/checkout/store"
+                    ]
+                }
+            ]
+        },
+        {
+            "group": "Schemas",
+            "pages": [
+                "guide/schemas/address",
+                "guide/schemas/product",
+                "guide/schemas/shipment"
+            ]
+        },
+        {
+            "group": "Enums",
+            "pages": [
+                "guide/enums/address-verification-status",
+                "guide/enums/carriers",
+                "guide/enums/checkout-session-status",
+                "guide/enums/countries",
+                "guide/enums/services",
+                "guide/enums/shipment-status"
+            ]
+        }
+    ],
+    "api" : {
+        "baseUrl" : "https://app.returnpilot.com/api/v1",
+        "auth"    : {
+            "method" : "bearer",
+            "name"   : "Authorization"
+        },
+        "playground" : {
+            "mode" : "hide"
+        }
+    },
+    "footerSocials" : {
+        "github": "https://github.com/returnpilot"
+    }
+}

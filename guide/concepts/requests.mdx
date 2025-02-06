@@ -1,0 +1,29 @@
+---
+title: 'Requests'
+description: 'Connect to the API and send requests'
+---
+
+### Overview
+
+ReturnPilot authenticates your API requests using your organization's API token, which must be included every time.
+
+<Warning>
+    Requests without a token will return a `401 Unauthorized` response.
+</Warning>
+
+### Authorization
+
+To authenticate, supply your API token in the request's header. You should configure the header so it uses `bearer` authentication e.g.
+
+```php
+request.headers.authorization = 'Bearer 2xH8eAQR...';
+```
+
+### Headers and Format
+
+The ReturnPilot API accepts request bodies in JSON format. When sending a request, you should include the following headers to indicate that you are sending and expecting JSON:
+
+```text
+Accept: application/json
+Content-Type: application/json
+```

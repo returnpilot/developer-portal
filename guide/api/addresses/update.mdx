@@ -1,0 +1,123 @@
+---
+title: 'Update Address'
+---
+
+import AddressIdField from '/snippets/api/url-parameters/address-id.mdx';
+
+### Overview
+
+This endpoint can be used to update an address.
+
+Endpoint: `/api/v1/addresses/{address_id}`
+
+Method: `PATCH`
+
+<Warning>
+    It's advised you use the [Verify Address](/guide/api/addresses/verify) endpoint to ensure that the address is valid before updating it.
+
+    Failure to verify the address may result in any shipments using this address being lost, delayed, or extra charges being applied.
+</Warning>
+
+### URL Parameters
+
+<AddressIdField action="update"/>
+
+### Request
+
+<ResponseField name="name" type="string" required>
+    The name of the address. For example, "John Smith" or "Acme Products".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
+</ResponseField>
+
+<ResponseField name="email" type="string" required>
+    The contact email for the address.
+
+    Carriers may send one or more shipment tracking notifications to this email address.
+
+    Minimum character length: `6`
+
+    Maximum character length: `100`
+</ResponseField>
+
+<ResponseField name="phone" type="string" required>
+    The contact number for the address.
+
+    This must be formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+
+    Minimum character length: `7`
+
+    Maximum character length: `30`
+</ResponseField>
+
+<ResponseField name="line_1" type="string" required>
+    Line 1 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="line_2" type="string">
+    Line 2 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="city" type="string" required>
+    The city of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="region" type="string" required>
+    The region of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `30`
+</ResponseField>
+
+<ResponseField name="post_code" type="string" required>
+    The post code of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `16`
+</ResponseField>
+
+<ResponseField name="country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the address' country.
+</ResponseField>
+
+### Response
+
+If the address is successfully updated, the API will return a `204 No Content` status code.
+
+<RequestExample>
+    ```json Example Request Body Structure
+    {
+        "name": "Kohler Group",
+        "email": "parisian.kristoffer@yahoo.com",
+        "phone": "+12069536978",
+        "line_1": "193 Dach Shores Suite 632",
+        "line_2": "Apt. 300",
+        "city": "Moenburgh",
+        "region": "Colorado",
+        "post_code": "72099",
+        "country": 1,
+    }
+    ```
+</RequestExample>
+
+<ResponseExample>
+    ```text 204
+    No Content
+    ```
+</ResponseExample>

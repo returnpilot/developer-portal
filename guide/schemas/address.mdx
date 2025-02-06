@@ -1,0 +1,70 @@
+---
+title: 'Address'
+---
+
+<ResponseField name="id" type="integer" required>
+    ID of the address.
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+    The name of the address. For example, "John Smith" or "Acme Products".
+</ResponseField>
+
+<ResponseField name="email" type="string" required>
+    The contact email for the address.
+</ResponseField>
+
+<ResponseField name="phone" type="string" required>
+    The contact number for the address formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+</ResponseField>
+
+<ResponseField name="line_1" type="string" required>
+    Line 1 of the address.
+</ResponseField>
+
+<ResponseField name="line_2" type="string">
+    Line 2 of the address.
+</ResponseField>
+
+<ResponseField name="city" type="string" required>
+    The city of the address.
+</ResponseField>
+
+<ResponseField name="region" type="string" required>
+    The region of the address.
+</ResponseField>
+
+<ResponseField name="post_code" type="string" required>
+    The post code of the address.
+</ResponseField>
+
+<ResponseField name="country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the country of the address.
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+    Timestamp of when the address was created.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+    Timestamp of when the address was last updated.
+</ResponseField>
+
+<ResponseExample>
+    ```json Example Address Structure
+    {
+        "id": 1,
+        "name": "Kohler Group",
+        "email": "parisian.kristoffer@yahoo.com",
+        "phone": "+12069536978",
+        "line_1": "193 Dach Shores Suite 632",
+        "line_2": "Apt. 300",
+        "city": "Moenburgh",
+        "region": "Colorado",
+        "post_code": "72099",
+        "country": 1,
+        "created_at": "2024-12-09 22:49:57",
+        "updated_at": "2024-12-09 22:49:57"
+    }
+    ```
+</ResponseExample>

@@ -1,0 +1,53 @@
+---
+title: 'Formatting'
+description: 'Explore the formats and conventions used in the ReturnPilot API'
+---
+
+### Overview
+
+The ReturnPilot API uses a variety of formats and conventions to ensure consistency across its endpoints. This guide provides an overview of the formats you can expect to encounter when working with the API.
+
+### Timestamp Format
+
+All timestamps returned by the ReturnPilot API follow the given format:
+
+```
+YYYY-MM-DD HH:MM:SS
+```
+
+For example, the timestamp representing the "Monday December 9, 2024 at 4:30pm" would be formatted as:
+
+```
+2024-12-09 16:30:00
+```
+
+<Note>
+    All timestamps used by the API are in the Coordinated Universal Time (**UTC**) timezone.
+</Note>
+
+### Phone Numbers
+
+ReturnPilot uses the E.164 standard for recording and displaying phone numbers. This standard requires that a number be properly formatted.
+
+#### Rules
+
+1. It must begin with a `+` symbol prefix.
+2. It must include the country code.
+3. It must exclude any leading zeros.
+4. It must include the area code.
+5. It must include all remaining digits.
+6. It must not include internal routing e.g. office extensions.
+7. It must not include any other characters e.g. spaces or hyphens.
+
+#### Examples
+
+The following table demonstrates how a locally-formatted number in a particular country should be written to be E.164-compliant:
+
+| Country     | Local        | E.164         |
+|-------------|--------------|---------------|
+| Australia   | 0491 570 159 | +61491570159  |
+| Canada      | 206-953-6978 | +12069536978  |
+| Ireland     | 0889 105 586 | +353889105586 |
+| New Zealand | 09 567 4562  | +64495674562  |
+| UK          | 07158 656473 | +447158656473 |
+| USA         | 206-953-6978 | +12069536978  |

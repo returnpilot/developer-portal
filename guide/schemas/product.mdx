@@ -1,0 +1,60 @@
+---
+title: 'Product'
+---
+
+<ResponseField name="id" type="integer" required>
+    ID of the product.
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+    The name of the product. For example, "Red Shirt" or "SKU 1356284".
+</ResponseField>
+
+<ResponseField name="category" type="string" required>
+    The category for the product e.g. "Clothing".
+</ResponseField>
+
+<ResponseField name="value" type="decimal" required>
+    The value of the product in USD e.g 55.21.
+</ResponseField>
+
+<ResponseField name="length" type="integer" required>
+    The length of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="width" type="integer" required>
+    The width of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="height" type="integer" required>
+    The height of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="weight" type="integer" required>
+    The weight of the product (in pounds, rounded up).
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+    Timestamp of when the product was created.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+    Timestamp of when the product was last updated.
+</ResponseField>
+
+<ResponseExample>
+    ```json Example Product Structure
+    {
+        "id": 1,
+        "name": "Red Shirt",
+        "category": "Clothing",
+        "value": 55.71,
+        "length": 6,
+        "width": 11,
+        "height": 3,
+        "weight": 2,
+        "created_at": "2024-12-09 22:49:57",
+        "updated_at": "2024-12-09 22:49:57"
+    }
+    ```
+</ResponseExample>

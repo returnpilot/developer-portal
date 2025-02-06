@@ -1,0 +1,42 @@
+---
+title: 'Rate Limiting'
+description: 'Explore the limitations and guidelines'
+---
+
+### Overview
+
+In order to ensure that the API remains stable for all customers, we enforce a limit on the number of requests that can be sent.
+
+<Note>
+    The API limit is currently 60 requests per minute.
+</Note>
+
+### Exceeding the limit
+
+If you send more than the permitted number of requests per minute, then those requests will be rejected. Until the limit resets, all requests will receive a `429 Too Many Requests` response.
+
+### Managing rate limits
+
+Usually, a `429 Too Many Requests` response isn't an issue. You can just send it again in a minute or so. However, if you receive this error regularly, then you should adjust your integration so that it backs off.
+
+### Developing a backoff strategy
+
+When you receive a response, it will include the following headers that indicate your current usage of the API:
+
+| Header                | Description                                          |
+| --------------------- | ---------------------------------------------------- |
+| X-RateLimit-Limit     | The number of requests that can be sent per minute.  |
+| X-RateLimit-Remaining | The number of requests that can be sent this minute. |
+
+If you exceed the API rate limit, then the following headers will also be present in the response:
+
+| Header                | Description                                       |
+| --------------------- | ------------------------------------------------- |
+| Retry-After           | Seconds remaining until new requests can be sent. |
+| X-RateLimit-Reset     | The unix timestamp when new requests can be sent. |
+
+#### Tips
+
+You can use `X-RateLimit-Remaining` to avoid hitting the rate limit. If you don't have any requests available, then there is no point sending one as it will return a `429 Too Many Requests` response.
+
+If you hit the rate limit / receive a `429 Too Many Requests` response, then you can use `Retry-After` or `X-RateLimit-Reset` to determine when it is suitable to send additional requests to the API.

@@ -1,0 +1,180 @@
+---
+title: 'Shipment'
+---
+
+<ResponseField name="id" type="integer" required>
+    ID of the shipment.
+</ResponseField>
+
+<ResponseField name="status" type="integer" required>
+    A [Shipment Status](/guide/enums/shipment-status) enum representing the status of the shipment.
+</ResponseField>
+
+<ResponseField name="service" type="integer" required>
+    A [Service](/guide/enums/service) enum representing the service type to be used for the shipment.
+</ResponseField>
+
+<ResponseField name="price" type="integer" required>
+    The total cost for shipping the item in USD cents.
+</ResponseField>
+
+<ResponseField name="carrier" type="integer" required>
+    A [Carrier](/guide/enums/service) enum representing the provider handling the shipment.
+</ResponseField>
+
+<ResponseField name="tracking_number" type="string" required>
+    The tracking number for the shipment.
+</ResponseField>
+
+<ResponseField name="tracking_page" type="string" required>
+    The URL to the tracking page for the shipment.
+</ResponseField>
+
+<ResponseField name="product_name" type="string" required>
+    The name of the product. For example, "Red Shirt" or "SKU 1356284".
+</ResponseField>
+
+<ResponseField name="product_category" type="string" required>
+    The category for the product e.g. "Clothing".
+</ResponseField>
+
+<ResponseField name="product_value" type="decimal" required>
+    The value of the product in USD e.g 55.21.
+</ResponseField>
+
+<ResponseField name="product_length" type="integer" required>
+    The length of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="product_width" type="integer" required>
+    The width of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="product_height" type="integer" required>
+    The height of the product (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="product_weight" type="integer" required>
+    The weight of the product (in pounds, rounded up).
+</ResponseField>
+
+<ResponseField name="origin_address_name" type="string" required>
+    The name of the origin address. For example, "John Smith" or "Acme Products".
+</ResponseField>
+
+<ResponseField name="origin_address_email" type="string" required>
+    The contact email for the origin address.
+</ResponseField>
+
+<ResponseField name="origin_address_phone" type="string" required>
+    The contact number for the origin address formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+</ResponseField>
+
+<ResponseField name="origin_address_line_1" type="string" required>
+    Line 1 of the origin address.
+</ResponseField>
+
+<ResponseField name="origin_address_line_2" type="string">
+    Line 2 of the origin address.
+</ResponseField>
+
+<ResponseField name="origin_address_city" type="string" required>
+    The city of the origin address.
+</ResponseField>
+
+<ResponseField name="origin_address_region" type="string" required>
+    The region of the origin address.
+</ResponseField>
+
+<ResponseField name="origin_address_post_code" type="string" required>
+    The post code of the origin address.
+</ResponseField>
+
+<ResponseField name="origin_address_country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the country of the origin address.
+</ResponseField>
+
+<ResponseField name="destination_address_name" type="string" required>
+    The name of the destination address. For example, "John Smith" or "Acme Products".
+</ResponseField>
+
+<ResponseField name="destination_address_email" type="string" required>
+    The contact email for the destination address.
+</ResponseField>
+
+<ResponseField name="destination_address_phone" type="string" required>
+    The contact number for the destination address formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+</ResponseField>
+
+<ResponseField name="destination_address_line_1" type="string" required>
+    Line 1 of the destination address.
+</ResponseField>
+
+<ResponseField name="destination_address_line_2" type="string">
+    Line 2 of the destination address.
+</ResponseField>
+
+<ResponseField name="destination_address_city" type="string" required>
+    The city of the destination address.
+</ResponseField>
+
+<ResponseField name="destination_address_region" type="string" required>
+    The region of the destination address.
+</ResponseField>
+
+<ResponseField name="destination_address_post_code" type="string" required>
+    The post code of the destination address.
+</ResponseField>
+
+<ResponseField name="destination_address_country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the country of the destination address.
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+    Timestamp of when the shipment was created.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+    Timestamp of when the shipment was last updated.
+</ResponseField>
+
+<ResponseExample>
+    ```json Example Shipment Structure
+    {
+        "id": 1,
+        "status": 2,
+        "service": 1,
+        "price": 2275,
+        "carrier": 2,
+        "tracking_number": "EX18472",
+        "tracking_page": "https://provider.com/track/EX18472",
+        "product_name": "Red Shirt",
+        "product_category": "Clothing",
+        "product_value": 55.71,
+        "product_length": 6,
+        "product_width": 11,
+        "product_height": 3,
+        "product_weight": 2,
+        "origin_address_name": "Gaylord-Ratke",
+        "origin_address_email": "warren25@hotmail.com",
+        "origin_address_phone": "+12069536978",
+        "origin_address_line_1": "684 Kiley Cape",
+        "origin_address_line_2": "Suite 269",
+        "origin_address_city": "Bednarburgh",
+        "origin_address_region": "Idaho",
+        "origin_address_post_code": "29709",
+        "origin_address_country": 1,
+        "destination_address_name": "Weissnat-Larkin",
+        "destination_address_email": "weimann.aylin@gmail.com",
+        "destination_address_phone": "+12069536978",
+        "destination_address_line_1": "141 Chaim Mountains",
+        "destination_address_line_2": "Apt. 556",
+        "destination_address_city": "Lake Kamron",
+        "destination_address_region": "South Dakota",
+        "destination_address_post_code": "43650-3558",
+        "destination_address_country": 1,
+        "created_at": "2024-12-09 15:39:37",
+        "updated_at": "2024-12-09 15:39:37"
+    },
+    ```
+</ResponseExample>

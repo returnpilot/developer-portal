@@ -1,0 +1,157 @@
+---
+title: 'Verify Address'
+---
+
+### Overview
+
+This endpoint can be used to verify an address.
+
+Endpoint: `/api/v1/addresses/verify`
+
+Method: `POST`
+
+### Request
+
+<ResponseField name="name" type="string" required>
+    The name of the address. For example, "John Smith" or "Acme Products".
+</ResponseField>
+
+<ResponseField name="email" type="string" required>
+    The contact email for the address.
+
+    Carriers may send one or more shipment tracking notifications to this email address.
+</ResponseField>
+
+<ResponseField name="phone" type="string" required>
+    The contact number for the address.
+
+    This must be formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+</ResponseField>
+
+<ResponseField name="line_1" type="string" required>
+    Line 1 of the address.
+</ResponseField>
+
+<ResponseField name="line_2" type="string">
+    Line 2 of the address.
+</ResponseField>
+
+<ResponseField name="city" type="string" required>
+    The city of the address.
+</ResponseField>
+
+<ResponseField name="region" type="string" required>
+    The region of the address.
+</ResponseField>
+
+<ResponseField name="post_code" type="string" required>
+    The post code of the address.
+</ResponseField>
+
+<ResponseField name="country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the address' country.
+</ResponseField>
+
+
+### Response
+
+If the address is valid, the endpoint will return a `200` status code with no content.
+
+Otherwise, the endpoint will return a `400` status code with the following fields in the response body:
+
+<ResponseField name="name" type="string" required>
+    The name of the address that was provided in the request.
+</ResponseField>
+
+<ResponseField name="email" type="string" required>
+    The email address that was provided in the request.
+</ResponseField>
+
+<ResponseField name="phone" type="string" required>
+    The contact number for the address that was provided in the request.
+</ResponseField>
+
+<ResponseField name="line_1" type="string" required>
+    Line 1 of the address.
+
+    If this field is not valid, the response will contain a revised value.
+</ResponseField>
+
+<ResponseField name="line_2" type="string">
+    Line 2 of the address.
+
+    If this field is not valid, the response will contain a revised value.
+</ResponseField>
+
+<ResponseField name="city" type="string" required>
+    The city of the address.
+
+    If this field is not valid, the response will contain a revised value.
+</ResponseField>
+
+<ResponseField name="region" type="string" required>
+    The region of the address.
+
+    If this field is not valid, the response will contain a revised value.
+</ResponseField>
+
+<ResponseField name="post_code" type="string" required>
+    The post code of the address.
+
+    If this field is not valid, the response will contain a revised value.
+</ResponseField>
+
+<ResponseField name="country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the address' country that was provided in the request.
+</ResponseField>
+
+<ResponseField name="recommended" type="boolean" required>
+    A boolean value indicating whether the returned address is recommended.
+</ResponseField>
+
+<ResponseField name="status" type="integer" required>
+    An [Address Verification Status](/guide/enums/address-verification-status) enum representing the status of the address verification.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+    A message which provides more information about the address verification status.
+</ResponseField>
+
+<RequestExample>
+    ```json Example Request Body Structure
+    {
+        "name": "Kohler Group",
+        "email": "returnpilot.example@example.com",
+        "phone": "+123456789",
+        "line_1": "123 Example Street",
+        "line_2": "Apt. 456",
+        "city": "Moenburgh",
+        "region": "Colorado",
+        "post_code": "72099",
+        "country": 1,
+    }
+    ```
+</RequestExample>
+
+<ResponseExample>
+    ```text 200
+    No Content
+    ```
+
+    ```json 400
+    {
+        "name": "Kohler Group",
+        "email": "returnpilot.example@example.com",
+        "phone": "+123456789",
+        "line_1": "Revised line 1",
+        "line_2": "Revised line 2",
+        "city": "Revised city",
+        "region": "Revised region",
+        "post_code": "Revised post code",
+        "country": 1,
+        "recommended": true,
+        "status": 3,
+        "message": "The address was not found, but a similar one exists. Accept it or adjust if needed."
+    }
+    ```
+</ResponseExample>

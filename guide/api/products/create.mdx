@@ -1,0 +1,97 @@
+---
+title: 'Create Product'
+---
+
+### Overview
+
+This endpoint can be used to create a new product.
+
+Endpoint: `/api/v1/products`
+
+Method: `POST`
+
+### Request
+
+<ResponseField name="name" type="string" required>
+    The name of the product. For example, "Red Shirt" or "SKU 1356284".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
+</ResponseField>
+
+<ResponseField name="category" type="string" required>
+    The category of the product. For example, "Clothing".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
+</ResponseField>
+
+<ResponseField name="value" type="decimal" required>
+    The value of the product in USD. For example, 55.21.
+
+    Minimum: `1.00`
+
+    Maximum: `300.00`
+</ResponseField>
+
+<ResponseField name="length" type="integer" required>
+    The length of the product in inches (rounded up).
+
+    Minimum: `4`
+
+    Maximum: `25`
+</ResponseField>
+
+<ResponseField name="width" type="integer" required>
+    The width of the product in inches (rounded up).
+
+    Minimum: `4`
+
+    Maximum: `25`
+</ResponseField>
+
+<ResponseField name="height" type="integer" required>
+    The height of the product in inches (rounded up).
+
+    Minimum: `1`
+
+    Maximum: `25`
+</ResponseField>
+
+<ResponseField name="weight" type="integer" required>
+    The height of the product in pounds (rounded up).
+
+    Minimum: `1`
+
+    Maximum: `25`
+</ResponseField>
+
+### Response
+
+<ResponseField name="id" type="integer" required>
+    The ID of the newly created product.
+</ResponseField>
+
+<RequestExample>
+    ```json Example Request Body Structure
+    {
+        "name": "Red Shirt",
+        "category": "Clothing",
+        "value": 55.71,
+        "length": 6,
+        "width": 11,
+        "height": 3,
+        "weight": 2,
+    }
+    ```
+</RequestExample>
+
+<ResponseExample>
+    ```json 201
+    {
+        "id": 10012
+    }
+    ```
+</ResponseExample>
