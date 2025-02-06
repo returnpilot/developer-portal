@@ -13,9 +13,11 @@ Endpoint: `/api/v1/shipments/{shipment_id}`
 Method: `PATCH`
 
 <Warning>
-    It's advised you use the [Verify Address](/guide/api/addresses/verify) endpoint to ensure that the origin address and destination address are valid before updating the shipment.
+    It is critical that you [verify the origin and destination addresses](/guide/api/addresses/verify) for the shipment.
 
-    Failure to verify the addresses may result in the shipment being lost, delayed, or extra charges being applied.
+    Failure to verify the addresses may result in loss or delays to the shipment.
+
+    You may also be **charged** should address correction be necessary by the carrier.
 </Warning>
 
 ### URL Parameters
@@ -25,12 +27,12 @@ Method: `PATCH`
 ### Request
 
 <Note>
-    When updating a shipment, you can use either of the following two approaches to specify the origin and destination addresses:
+    When creating a shipment, you can use either of the following two approaches to specify the origin and destination addresses:
 
-    - Using the `origin_address_id` and `destination_address_id` fields to reference existing addresses that have already been stored in ReturnPilot.
-    - Providing the address details directly in the `origin_address` and `destination_address` fields.
+    - Use the `origin_address_id` and `destination_address_id` fields to reference existing addresses that have already been stored on ReturnPilot.
+    - Provide the address details directly in the `origin_address` and `destination_address` fields.
 
-    Please note, you can use a combination of both approaches. For example, you can provide the `origin_address_id` and `destination_address` fields, or vice versa.
+    You can also combine these approaches. For example, by using a `origin_address_id` and a `destination_address`, or vice versa.
 
     For examples of how to use these fields, see the request examples on this page.
 </Note>
@@ -41,30 +43,58 @@ Method: `PATCH`
 
 <ResponseField name="product_name" type="string" required>
     The name of the product. For example, "Red Shirt" or "SKU 1356284".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
 </ResponseField>
 
 <ResponseField name="product_category" type="string" required>
-    The category for the product e.g. "Clothing".
+    The category of the product. For example, "Clothing".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
 </ResponseField>
 
 <ResponseField name="product_value" type="decimal" required>
-    The value of the product in USD e.g 55.21.
+    The value of the product in USD. For example, 55.21.
+
+    Minimum: `1.00`
+
+    Maximum: `300.00`
 </ResponseField>
 
 <ResponseField name="product_length" type="integer" required>
-    The length of the product (in inches, rounded up).
+    The length of the product in inches (rounded up).
+
+    Minimum: `4`
+
+    Maximum: `25`
 </ResponseField>
 
 <ResponseField name="product_width" type="integer" required>
-    The width of the product (in inches, rounded up).
+    The width of the product in inches (rounded up).
+
+    Minimum: `4`
+
+    Maximum: `25`
 </ResponseField>
 
 <ResponseField name="product_height" type="integer" required>
-    The height of the product (in inches, rounded up).
+    The height of the product in inches (rounded up).
+
+    Minimum: `1`
+
+    Maximum: `25`
 </ResponseField>
 
 <ResponseField name="product_weight" type="integer" required>
-    The weight of the product (in pounds, rounded up).
+    The height of the product in pounds (rounded up).
+
+    Minimum: `1`
+
+    Maximum: `25`
 </ResponseField>
 
 <ResponseField name="origin_address_id" type="integer">
@@ -170,6 +200,8 @@ Method: `PATCH`
 ### Response
 
 If the shipment is successfully updated, the API will return a `204 No Content` status code.
+
+The response will not contain any content.
 
 <RequestExample>
     ```json Request (with address IDs)

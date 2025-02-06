@@ -13,54 +13,89 @@ Method: `POST`
 ### Request
 
 <ResponseField name="name" type="string" required>
-    The name of the address. For example, "John Smith" or "Acme Products".
+    For example, "John Smith" or "Acme Products".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
 </ResponseField>
 
 <ResponseField name="email" type="string" required>
-    The contact email for the address.
+    The contact email address.
 
     Carriers may send one or more shipment tracking notifications to this email address.
+
+    Minimum character length: `6`
+
+    Maximum character length: `100`
 </ResponseField>
 
 <ResponseField name="phone" type="string" required>
-    The contact number for the address.
+    The contact phone number.
 
     This must be formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+
+    Minimum character length: `7`
+
+    Maximum character length: `30`
 </ResponseField>
 
 <ResponseField name="line_1" type="string" required>
     Line 1 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
 </ResponseField>
 
 <ResponseField name="line_2" type="string">
     Line 2 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
 </ResponseField>
 
 <ResponseField name="city" type="string" required>
-    The city of the address.
+    The address' town or city.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
 </ResponseField>
 
 <ResponseField name="region" type="string" required>
-    The region of the address.
+    The address' state, province, or region.
+
+    Minimum character length: `2`
+
+    Maximum character length: `30`
 </ResponseField>
 
 <ResponseField name="post_code" type="string" required>
-    The post code of the address.
+    The address' post code.
+
+    Minimum character length: `2`
+
+    Maximum character length: `16`
 </ResponseField>
 
 <ResponseField name="country" type="integer" required>
     A [Country](/guide/enums/countries) enum representing the address' country.
 </ResponseField>
 
-
 ### Response
 
-If the address is valid, the endpoint will return a `200` status code with no content.
+If the address is valid, the API will return a `200 OK` status code.
 
-Otherwise, the endpoint will return a `400` status code with the following fields in the response body:
+The response will not contain any content.
+
+If the address is not valid, the API will return a `400 Bad Request` status code.
+
+The response will contain the following content:
 
 <ResponseField name="name" type="string" required>
-    The name of the address that was provided in the request.
+    The name that was provided in the request.
 </ResponseField>
 
 <ResponseField name="email" type="string" required>
@@ -68,37 +103,37 @@ Otherwise, the endpoint will return a `400` status code with the following field
 </ResponseField>
 
 <ResponseField name="phone" type="string" required>
-    The contact number for the address that was provided in the request.
+    The phone number that was provided in the request.
 </ResponseField>
 
 <ResponseField name="line_1" type="string" required>
     Line 1 of the address.
 
-    If this field is not valid, the response will contain a revised value.
+    If the corresponding request field is not valid, then this may be set to a recommended alternative.
 </ResponseField>
 
 <ResponseField name="line_2" type="string">
     Line 2 of the address.
 
-    If this field is not valid, the response will contain a revised value.
+    If the corresponding request field is not valid, then this may be set to a recommended alternative.
 </ResponseField>
 
 <ResponseField name="city" type="string" required>
-    The city of the address.
+    The address' town or city.
 
-    If this field is not valid, the response will contain a revised value.
+    If the corresponding request field is not valid, then this may be set to a recommended alternative.
 </ResponseField>
 
 <ResponseField name="region" type="string" required>
-    The region of the address.
+    The address' state, province, or region.
 
-    If this field is not valid, the response will contain a revised value.
+    If the corresponding request field is not valid, then this may be set to a recommended alternative.
 </ResponseField>
 
 <ResponseField name="post_code" type="string" required>
-    The post code of the address.
+    The address' post code.
 
-    If this field is not valid, the response will contain a revised value.
+    If the corresponding request field is not valid, then this may be set to a recommended alternative.
 </ResponseField>
 
 <ResponseField name="country" type="integer" required>
@@ -106,7 +141,7 @@ Otherwise, the endpoint will return a `400` status code with the following field
 </ResponseField>
 
 <ResponseField name="recommended" type="boolean" required>
-    A boolean value indicating whether the returned address is recommended.
+    Whether the returned / revised address is recommended.
 </ResponseField>
 
 <ResponseField name="status" type="integer" required>

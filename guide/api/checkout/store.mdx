@@ -19,7 +19,7 @@ Method: `POST`
 <Warning>
     This endpoint will charge the shipment's price to the organization's payment method.
 
-    Please ensure that the shipment's details are correct, and that the addresses have been verified before finalising the checkout session.
+    Please ensure that the shipment's details are correct, and that the [addresses have been verified](/guide/api/addresses/verify) before finalising the checkout session.
 
     Failure to do so may result in delays, lost shipments, or extra charges.
 </Warning>
@@ -30,15 +30,19 @@ Method: `POST`
 
 ### Response (204)
 
-This response will be returned if the payment is successful. Note that the response will not contain any content. Therefore, you should check for the presence of `204` HTTP status code.
+If the checkout session is successfully stored, the API will return a `204 No Content` status code.
+
+The response will not contain any content.
 
 ### Response (402)
 
-This response will be returned if the payment is declined by the payment provider.
+If the checkout session was not successfully stored because the payment provider declined the organization's card, then the API will return a `402 Payment Required` status code.
 
 <Note>
-    Receiving this response will automatically invalidate your payment method. You will need to address this via the ReturnPilot website before you can make further payment attempts.
+    Receiving this response will automatically invalidate your payment method. You will need to address this via the ArtPort website before you can make further payment attempts.
 </Note>
+
+The response will contain the following content:
 
 <ResponseField name="status" type="integer" required>
     The internal status code of the error.
@@ -50,11 +54,13 @@ This response will be returned if the payment is declined by the payment provide
 
 ### Response (409)
 
-This response will be returned if the payment fails. In most cases, this is a temporary error and you can simply retry the request.
+If the checkout session was not successfully created because payment failed, then the API will return a `409 Conflict` status code.
 
 <Note>
-    It is recommended that you wait a minute or so before retrying. This increases the chance that your request will be processed successfully.
+    In most cases, this is a temporary error and you can simply retry the request. It is recommended that you wait a minute or so before retrying. This increases the chance that your request will be processed successfully.
 </Note>
+
+The response will contain the following content:
 
 <ResponseField name="status" type="integer" required>
     The internal status code of the error.

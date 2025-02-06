@@ -12,11 +12,23 @@ Endpoint: `/api/v1/checkout/{shipment_id}`
 
 Method: `GET`
 
+<Warning>
+    It is critical that you [verify the origin and destination addresses](/guide/api/addresses/verify) for the shipment.
+
+    Failure to verify the addresses may result in loss or delays to the shipment.
+
+    You may also be **charged** should address correction be necessary by the carrier.
+</Warning>
+
 ### URL Parameters
 
 <ShipmentIdField action="purchase"/>
 
 ### Response (200)
+
+If the checkout session was successfully created, the API will return a `200 OK` status code.
+
+The response will contain the following content:
 
 <ResponseField name="price" type="integer" required>
     The total cost for shipping the item in USD cents.
@@ -25,6 +37,10 @@ Method: `GET`
 </ResponseField>
 
 ### Response (500)
+
+If the checkout session was not successfully created, the API will return a `500 Server Error` status code.
+
+The response will contain the following content:
 
 <ResponseField name="status" type="integer" required>
     A [Checkout Session Status](/guide/enums/checkout-session-status) enum representing the status of the checkout session.

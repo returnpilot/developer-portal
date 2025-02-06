@@ -11,15 +11,17 @@ Endpoint: `/api/v1/addresses`
 Method: `POST`
 
 <Warning>
-    It's advised you use the [Verify Address](/guide/api/addresses/verify) endpoint to ensure that the address is valid before creating it.
+    It is critically important that you [verify the address](/guide/api/addresses/verify) before creating it.
 
-    Failure to verify the address may result in any shipments using this address being lost, delayed, or extra charges being applied.
+    Failure to verify the address may result in loss or delayed shipments.
+
+    You may also be **charged** should address correction be necessary by the carrier.
 </Warning>
 
 ### Request
 
 <ResponseField name="name" type="string" required>
-    The name of the address. For example, "John Smith" or "Acme Products".
+    For example, "John Smith" or "Acme Products".
 
     Minimum character length: `2`
 
@@ -27,7 +29,7 @@ Method: `POST`
 </ResponseField>
 
 <ResponseField name="email" type="string" required>
-    The contact email for the address.
+    The contact email address.
 
     Carriers may send one or more shipment tracking notifications to this email address.
 
@@ -37,7 +39,7 @@ Method: `POST`
 </ResponseField>
 
 <ResponseField name="phone" type="string" required>
-    The contact number for the address.
+    The contact phone number.
 
     This must be formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
 
@@ -63,7 +65,7 @@ Method: `POST`
 </ResponseField>
 
 <ResponseField name="city" type="string" required>
-    The city of the address.
+    The address' town or city.
 
     Minimum character length: `2`
 
@@ -71,7 +73,7 @@ Method: `POST`
 </ResponseField>
 
 <ResponseField name="region" type="string" required>
-    The region of the address.
+    The address' state, province, or region.
 
     Minimum character length: `2`
 
@@ -79,7 +81,7 @@ Method: `POST`
 </ResponseField>
 
 <ResponseField name="post_code" type="string" required>
-    The post code of the address.
+    The address' post code.
 
     Minimum character length: `2`
 
@@ -91,6 +93,10 @@ Method: `POST`
 </ResponseField>
 
 ### Response
+
+If the address is successfully created, the API will return a `201 Created` status code.
+
+The response will contain the following content:
 
 <ResponseField name="id" type="integer" required>
     The ID of the newly created address.
