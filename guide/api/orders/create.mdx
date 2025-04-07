@@ -1,0 +1,368 @@
+---
+title: 'Create Order'
+---
+
+### Overview
+
+This endpoint can be used to create a new order.
+
+Endpoint: `/api/v1/orders`
+
+Method: `POST`
+
+<Warning>
+    It is critical that you [verify the origin and destination addresses](/guide/api/addresses/verify) for the order.
+
+    Failure to verify the addresses may result in loss or delays to the order.
+
+    You may also be **charged** should address correction be necessary by the carrier.
+</Warning>
+
+<Note>
+    Origin address refers to the location where the return shipment will be sent from.
+
+    Destination address refers to the location where the return shipment will be sent.
+</Note>
+
+### Request
+
+<ResponseField name="reference" type="string" required>
+    The unique number or reference code for the order.
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
+</ResponseField>
+
+<ResponseField name="expires_at" type="integer" required>
+    The number of days from now when a return can no longer be scheduled.
+
+    Minimum: `10`
+
+    Maximum: `365`
+</ResponseField>
+
+<ResponseField name="parcels" type="array" required>
+    An `array` of parcels that are being returned.
+
+    An order may contain up to `10` parcels.
+
+    <Expandable title="parcels" defaultOpen="true">
+        <ResponseField name="returnable" type="boolean" required>
+            Status indicating whether the parcel may be returned.
+        </ResponseField>
+
+        <ResponseField name="product_id" type="integer">
+            The product ID to use for the parcel.
+
+            Either supply this field or `product`, but do not supply both.
+        </ResponseField>
+
+        <ResponseField name="product" type="array">
+            The product details of the parcel.
+
+            Either supply this field or `product_id`, but do not supply both.
+
+            <Expandable title="product" defaultOpen="true">
+                <ResponseField name="sku" type="string" required>
+                    The unique SKU or internal reference code for the product. For example, "1356284".
+
+                    Minimum character length: `2`
+
+                    Maximum character length: `30`
+                </ResponseField>
+
+                <ResponseField name="description" type="string" required>
+                    The description of the product e.g. "Red shirt".
+
+                    Minimum character length: `2`
+
+                    Maximum character length: `50`
+                </ResponseField>
+
+                <ResponseField name="category" type="string" required>
+                    The category of the product e.g. "Clothing".
+
+                    Minimum character length: `2`
+
+                    Maximum character length: `30`
+                </ResponseField>
+
+                <ResponseField name="price" type="decimal" required>
+                    The price of the product in your local currency e.g 55.21.
+
+                    Minimum: `1.00`
+
+                    Maximum: `999999999.99`
+                </ResponseField>
+
+                <ResponseField name="length" type="integer" required>
+                    The length of the product (in inches, rounded up).
+
+                    Minimum: `4`
+
+                    Maximum: `25`
+                </ResponseField>
+
+                <ResponseField name="width" type="integer" required>
+                    The width of the product (in inches, rounded up).
+
+                    Minimum: `4`
+
+                    Maximum: `25`
+                </ResponseField>
+
+                <ResponseField name="height" type="integer" required>
+                    The height of the product (in inches, rounded up).
+
+                    Minimum: `1`
+
+                    Maximum: `25`
+                </ResponseField>
+
+                <ResponseField name="weight" type="integer" required>
+                    The weight of the product (in pounds, rounded up).
+
+                    Minimum: `1`
+
+                    Maximum: `25`
+                </ResponseField>
+            </Expandable>
+        </ResponseField>
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="origin_address_name" type="string" required>
+    For example, "John Smith" or "Acme Products".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
+</ResponseField>
+
+<ResponseField name="origin_address_email" type="string" required>
+    The contact email address.
+
+    Carriers may send one or more order tracking notifications to this email address.
+
+    Minimum character length: `6`
+
+    Maximum character length: `100`
+</ResponseField>
+
+<ResponseField name="origin_address_phone" type="string" required>
+    The contact phone number.
+
+    This must be formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+
+    Minimum character length: `7`
+
+    Maximum character length: `30`
+</ResponseField>
+
+<ResponseField name="origin_address_line_1" type="string" required>
+    Line 1 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="origin_address_line_2" type="string">
+    Line 2 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="origin_address_city" type="string" required>
+    The address' town or city.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="origin_address_region" type="string" required>
+    The address' state, province, or region.
+
+    Minimum character length: `2`
+
+    Maximum character length: `30`
+</ResponseField>
+
+<ResponseField name="origin_address_post_code" type="string" required>
+    The address' post or zip code.
+
+    Minimum character length: `2`
+
+    Maximum character length: `16`
+</ResponseField>
+
+<ResponseField name="origin_address_country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the address' country.
+</ResponseField>
+
+<ResponseField name="destination_address_name" type="string" required>
+    For example, "John Smith" or "Acme Products".
+
+    Minimum character length: `2`
+
+    Maximum character length: `50`
+</ResponseField>
+
+<ResponseField name="destination_address_email" type="string" required>
+    The contact email address.
+
+    Carriers may send one or more order tracking notifications to this email address.
+
+    Minimum character length: `6`
+
+    Maximum character length: `100`
+</ResponseField>
+
+<ResponseField name="destination_address_phone" type="string" required>
+    The contact phone number.
+
+    This must be formatted using the [E.164 standard](/guide/concepts/formatting#phone-numbers).
+
+    Minimum character length: `7`
+
+    Maximum character length: `30`
+</ResponseField>
+
+<ResponseField name="destination_address_line_1" type="string" required>
+    Line 1 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="destination_address_line_2" type="string">
+    Line 2 of the address.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="destination_address_city" type="string" required>
+    The address' town or city.
+
+    Minimum character length: `2`
+
+    Maximum character length: `35`
+</ResponseField>
+
+<ResponseField name="destination_address_region" type="string" required>
+    The address' state, province, or region.
+
+    Minimum character length: `2`
+
+    Maximum character length: `30`
+</ResponseField>
+
+<ResponseField name="destination_address_post_code" type="string" required>
+    The address' post or zip code.
+
+    Minimum character length: `2`
+
+    Maximum character length: `16`
+</ResponseField>
+
+<ResponseField name="destination_address_country" type="integer" required>
+    A [Country](/guide/enums/countries) enum representing the address' country.
+</ResponseField>
+
+### Response
+
+If the order is successfully created, the API will return a `201 Created` status code.
+
+The response will contain the following content:
+
+<ResponseField name="id" type="integer" required>
+    The ID of the newly created order.
+</ResponseField>
+
+<ResponseField name="return_url" type="string" required>
+    The URL used to schedule a return shipment.
+</ResponseField>
+
+<RequestExample>
+    ```json Request (product ID)
+    {
+        "reference": "ORD-12345",
+        "expires_at": 30,
+        "parcels": [{
+            "returnable": true,
+            "product_id": 1
+        }]
+        "origin_address_name": "Schaefer, Nolan and Wehner",
+        "origin_address_email": "dave45@gmail.com",
+        "origin_address_phone": "+12069536978",
+        "origin_address_line_1": "492 Quitzon Avenue Apt. 157",
+        "origin_address_line_2": "Apt. 027",
+        "origin_address_city": "Gustside",
+        "origin_address_region": "Massachusetts",
+        "origin_address_post_code": "17594-7013",
+        "origin_address_country": 1
+        "destination_address_name": "Krajcik, Kuhn and Eichmann",
+        "destination_address_email": "teresa93@gmail.com",
+        "destination_address_phone": "+12069536978",
+        "destination_address_line_1": "1712 Marina Ramp Suite 512",
+        "destination_address_line_2": "Apt. 235",
+        "destination_address_city": "Port Marlon",
+        "destination_address_region": "Indiana",
+        "destination_address_post_code": "62893",
+        "destination_address_country": 1
+    }
+    ```
+    ```json Request (product array)
+    {
+        "reference": "ORD-12345",
+        "expires_at": 30,
+        "parcels": [{
+            "returnable": true,
+            "product": {
+                "sku": "1356284",
+                "description": "Red Shirt",
+                "category": "Clothing",
+                "price": 55.71,
+                "length": 6,
+                "width": 11,
+                "height": 3,
+                "weight": 2
+            }
+        }]
+        "origin_address_name": "Schaefer, Nolan and Wehner",
+        "origin_address_email": "dave45@gmail.com",
+        "origin_address_phone": "+12069536978",
+        "origin_address_line_1": "492 Quitzon Avenue Apt. 157",
+        "origin_address_line_2": "Apt. 027",
+        "origin_address_city": "Gustside",
+        "origin_address_region": "Massachusetts",
+        "origin_address_post_code": "17594-7013",
+        "origin_address_country": 1
+        "destination_address_name": "Krajcik, Kuhn and Eichmann",
+        "destination_address_email": "teresa93@gmail.com",
+        "destination_address_phone": "+12069536978",
+        "destination_address_line_1": "1712 Marina Ramp Suite 512",
+        "destination_address_line_2": "Apt. 235",
+        "destination_address_city": "Port Marlon",
+        "destination_address_region": "Indiana",
+        "destination_address_post_code": "62893",
+        "destination_address_country": 1
+    }
+    ```
+</RequestExample>
+
+<ResponseExample>
+    ```json 201
+    {
+        "id": 10011,
+        "return_url": "https://app.returnpilot.co/..."
+    }
+    ```
+</ResponseExample>

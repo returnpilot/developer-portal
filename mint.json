@@ -46,41 +46,26 @@
             "group" : "API Endpoints",
             "pages" : [
                 {
-                    "group": "Products",
-                    "pages": [
-                        "guide/api/products/list",
-                        "guide/api/products/show",
-                        "guide/api/products/create",
-                        "guide/api/products/update",
-                        "guide/api/products/delete"
-                    ]
-                },
-                {
                     "group": "Addresses",
                     "pages": [
-                        "guide/api/addresses/list",
-                        "guide/api/addresses/show",
-                        "guide/api/addresses/create",
-                        "guide/api/addresses/update",
-                        "guide/api/addresses/delete",
                         "guide/api/addresses/verify"
                     ]
                 },
                 {
-                    "group": "Shipments",
+                    "group": "Products",
                     "pages": [
-                        "guide/api/shipments/list",
-                        "guide/api/shipments/show",
-                        "guide/api/shipments/create",
-                        "guide/api/shipments/update",
-                        "guide/api/shipments/delete"
+                        "guide/api/products/list",
+                        "guide/api/products/show",
+                        "guide/api/products/create"
                     ]
                 },
                 {
-                    "group": "Checkout",
+                    "group": "Orders",
                     "pages": [
-                        "guide/api/checkout/create",
-                        "guide/api/checkout/store"
+                        "guide/api/orders/list",
+                        "guide/api/orders/show",
+                        "guide/api/orders/create",
+                        "guide/api/orders/delete"
                     ]
                 }
             ]
@@ -89,24 +74,23 @@
             "group": "Schemas",
             "pages": [
                 "guide/schemas/address",
+                "guide/schemas/parcel",
                 "guide/schemas/product",
-                "guide/schemas/shipment"
+                "guide/schemas/order"
             ]
         },
         {
             "group": "Enums",
             "pages": [
-                "guide/enums/address-verification-status",
-                "guide/enums/carriers",
-                "guide/enums/checkout-session-status",
                 "guide/enums/countries",
-                "guide/enums/services",
-                "guide/enums/shipment-status"
+                "guide/enums/reason-statuses",
+                "guide/enums/shipment-statuses",
+                "guide/enums/address-verification-statuses"
             ]
         }
     ],
     "api" : {
-        "baseUrl" : "https://app.returnpilot.com/api/v1",
+        "baseUrl" : "https://app.returnpilot.co/api/v1",
         "auth"    : {
             "method" : "bearer",
             "name"   : "Authorization"

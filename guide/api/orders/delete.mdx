@@ -1,0 +1,35 @@
+---
+title: 'Delete Order'
+---
+
+import OrderIdField from '/snippets/api/url-parameters/order-id.mdx';
+
+### Overview
+
+This endpoint can be used to delete an order.
+
+Endpoint: `/api/v1/orders/{order_id}`
+
+Method: `DELETE`
+
+<Note>
+    Orders must have a status of `1 Inactive`.
+
+    Orders with any other status have a return associated with them and cannot be deleted.
+</Note>
+
+### URL Parameters
+
+<OrderIdField action="delete"/>
+
+### Response
+
+If the order is successfully deleted, the API will return a `204 No Content` status code.
+
+The response will not contain any content.
+
+<ResponseExample>
+    ```text 204
+    No Content
+    ```
+</ResponseExample>

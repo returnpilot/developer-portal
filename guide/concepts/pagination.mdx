@@ -1,6 +1,6 @@
 ---
 title: 'Pagination'
-description: 'Explore how to use pagination with the ReturnPilot API'
+description: 'Explore how to paginate through datasets'
 ---
 
 ### Overview
@@ -11,20 +11,24 @@ Any endpoints that support pagination will be indicated in the documentation.
 
 #### Setting the Page Number
 
-To retrieve a specific page of data, you can use the `page` query parameter. For example, to retrieve the second page of data, you could use the following path:
+To retrieve a specific page of data, you can use the `page` query parameter.
+
+For example, to retrieve the second page of data, you would use the following path:
 
 ```
-/api/v1/shipments?page=2
+/api/v1/orders?page=2
 ```
 
 If no `page` query parameter is passed, the API will default to the first page.
 
 #### Customizing the Page Size
 
-By default, paginated endpoints will return **20 items per page**. However, this can be customized by passing a `limit` query parameter. For example, to retrieve 50 items per page, you could use the following path:
+By default, paginated endpoints will return **20 items per page**. However, this can be customized by passing a `limit` query parameter.
+
+For example, to retrieve 50 items per page, you would use the following path:
 
 ```
-/api/v1/shipments?limit=50
+/api/v1/orders?limit=50
 ```
 
 <Info>
@@ -42,25 +46,23 @@ Paginated responses use the following structure:
   "data": [
     {
       "id": 1,
-      "title": "Shipment One",
       // ...
     },
     {
       "id": 2,
-      "title": "Shipment Two",
       // ...
     }
   ],
   "links": {
-    "first": "https://app.returnpilot.co/api/v1/shipments?page=1",
+    "first": "https://app.returnpilot.co/api/v1/orders?page=1",
     "last": null,
     "prev": null,
-    "next": "https://app.returnpilot.co/api/v1/shipments?page=2"
+    "next": "https://app.returnpilot.co/api/v1/orders?page=2"
   },
   "meta": {
     "current_page": 1,
     "from": 1,
-    "path": "https://app.returnpilot.co/api/v1/shipments",
+    "path": "https://app.returnpilot.co/api/v1/orders",
     "per_page": 20,
     "to": 20
   }
@@ -104,7 +106,7 @@ Paginated responses use the following structure:
         </ResponseField>
 
         <ResponseField name="meta.from" type="number" required>
-            The starting index of the items on the current page. For example, if the page size is 20, and the second page has been returned, this will value will be 21.
+            The starting index of the items on the current page. For example, if the page size is 20, and the second page has been returned, then it will be 21.
         </ResponseField>
 
         <ResponseField name="meta.path" type="string" required>
@@ -116,7 +118,7 @@ Paginated responses use the following structure:
         </ResponseField>
 
         <ResponseField name="meta.to" type="number" required>
-            The ending index of the items on the current page. For example, if the page size is 20, and the second page has been returned, this will value will be 40.
+            The ending index of the items on the current page. For example, if the page size is 20, and the second page has been returned, then it will be 40.
         </ResponseField>
     </Expandable>
 </ResponseField>

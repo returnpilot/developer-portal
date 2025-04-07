@@ -1,0 +1,118 @@
+---
+title: 'Order'
+---
+
+<ResponseField name="id" type="integer" required>
+    ID of the order.
+</ResponseField>
+
+<ResponseField name="origin_address" type="array" required>
+    The [Address](/guide/schemas/address) representing where the return originates.
+</ResponseField>
+
+<ResponseField name="destination_address" type="array" required>
+    The [Address](/guide/schemas/address) representing where the return is shipped.
+</ResponseField>
+
+<ResponseField name="parcels" type="array" required>
+    An `array` of [Parcels](/guide/schemas/parcel) associated with the order.
+</ResponseField>
+
+<ResponseField name="reference" type="string" required>
+    The unique number or reference code for the order.
+</ResponseField>
+
+<ResponseField name="status" type="integer" required>
+    A [Status](/guide/enums/shipment-statuses) enum representing the status of the order.
+</ResponseField>
+
+<ResponseField name="price" type="decimal">
+    The total cost for shipping in your local currency.
+</ResponseField>
+
+<ResponseField name="carrier" type="string">
+    The name of the provider handling the return shipment.
+</ResponseField>
+
+<ResponseField name="return_url" type="string" required>
+    The URL used to schedule a return shipment.
+</ResponseField>
+
+<ResponseField name="expires_at" type="string" required>
+    Timestamp of when a return can no longer be scheduled.
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+    Timestamp of when the order was created.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+    Timestamp of when the order was last updated.
+</ResponseField>
+
+<ResponseExample>
+    ```json Example
+    {
+        "id": 1,
+        "origin_address": {
+            "id": 1,
+            "name": "Kohler Group",
+            "email": "parisian.kristoffer@yahoo.com",
+            "phone": "+12069536978",
+            "line_1": "193 Dach Shores Suite 632",
+            "line_2": "Apt. 300",
+            "city": "Moenburgh",
+            "region": "Colorado",
+            "post_code": "72099",
+            "country": 1,
+            "created_at": "2024-12-09 22:49:57",
+            "updated_at": "2024-12-09 22:49:57"
+        },
+        "destination_address": {
+            "id": 1,
+            "name": "Kohler Group",
+            "email": "parisian.kristoffer@yahoo.com",
+            "phone": "+12069536978",
+            "line_1": "193 Dach Shores Suite 632",
+            "line_2": "Apt. 300",
+            "city": "Moenburgh",
+            "region": "Colorado",
+            "post_code": "72099",
+            "country": 1,
+            "created_at": "2024-12-09 22:49:57",
+            "updated_at": "2024-12-09 22:49:57"
+        },
+        "parcels": [{
+            "id": 1,
+            "product": {
+                "id": 1,
+                "sku": "1356284",
+                "description": "Red Shirt",
+                "category": "Clothing",
+                "price": 55.71,
+                "length": 6,
+                "width": 11,
+                "height": 3,
+                "weight": 2,
+                "created_at": "2024-12-09 22:49:57",
+                "updated_at": "2024-12-09 22:49:57"
+            },
+            "returnable": true,
+            "reason": 1,
+            "tracking_number": "EX18472",
+            "tracking_page": "https://provider.com/track/EX18472",
+            "shipping_label": "https://provider.com/label/EX18472",
+            "created_at": "2024-12-09 22:49:57",
+            "updated_at": "2024-12-09 22:49:57"
+        }],
+        "reference": "ORD-12345",
+        "status": 2,
+        "price": 22.75,
+        "carrier": "FedEx",
+        "return_url": "https://app.returnpilot.co/...",
+        "expires_at": "2024-12-09 15:39:37",
+        "created_at": "2024-12-09 15:39:37",
+        "updated_at": "2024-12-09 15:39:37"
+    },
+    ```
+</ResponseExample>

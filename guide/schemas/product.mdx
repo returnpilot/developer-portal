@@ -6,16 +6,20 @@ title: 'Product'
     ID of the product.
 </ResponseField>
 
-<ResponseField name="name" type="string" required>
-    The name of the product. For example, "Red Shirt" or "SKU 1356284".
+<ResponseField name="sku" type="string" required>
+    The unique SKU or internal reference code for the product. For example, "1356284".
+</ResponseField>
+
+<ResponseField name="description" type="string" required>
+    The description of the product e.g. "Red shirt".
 </ResponseField>
 
 <ResponseField name="category" type="string" required>
-    The category for the product e.g. "Clothing".
+    The category of the product e.g. "Clothing".
 </ResponseField>
 
-<ResponseField name="value" type="decimal" required>
-    The value of the product in USD e.g 55.21.
+<ResponseField name="price" type="decimal" required>
+    The price of the product in your local currency e.g 55.21.
 </ResponseField>
 
 <ResponseField name="length" type="integer" required>
@@ -43,12 +47,13 @@ title: 'Product'
 </ResponseField>
 
 <ResponseExample>
-    ```json Example Product Structure
+    ```json Example
     {
         "id": 1,
-        "name": "Red Shirt",
+        "sku": "1356284",
+        "description": "Red Shirt",
         "category": "Clothing",
-        "value": 55.71,
+        "price": 55.71,
         "length": 6,
         "width": 11,
         "height": 3,

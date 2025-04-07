@@ -23,8 +23,6 @@ Method: `POST`
 <ResponseField name="email" type="string" required>
     The contact email address.
 
-    Carriers may send one or more shipment tracking notifications to this email address.
-
     Minimum character length: `6`
 
     Maximum character length: `100`
@@ -73,7 +71,7 @@ Method: `POST`
 </ResponseField>
 
 <ResponseField name="post_code" type="string" required>
-    The address' post code.
+    The address' post or zip code.
 
     Minimum character length: `2`
 
@@ -86,9 +84,7 @@ Method: `POST`
 
 ### Response
 
-If the address is valid, the API will return a `200 OK` status code.
-
-The response will not contain any content.
+If the address is valid, the API will return a `200 OK` status code with no body content.
 
 If the address is not valid, the API will return a `400 Bad Request` status code.
 
@@ -131,7 +127,7 @@ The response will contain the following content:
 </ResponseField>
 
 <ResponseField name="post_code" type="string" required>
-    The address' post code.
+    The address' post or zip code.
 
     If the corresponding request field is not valid, then this may be set to a recommended alternative.
 </ResponseField>
@@ -145,7 +141,7 @@ The response will contain the following content:
 </ResponseField>
 
 <ResponseField name="status" type="integer" required>
-    An [Address Verification Status](/guide/enums/address-verification-status) enum representing the status of the address verification.
+    An [Address Verification Status](/guide/enums/address-verification-statuses) enum representing the status of the address verification.
 </ResponseField>
 
 <ResponseField name="message" type="string" required>
@@ -153,7 +149,7 @@ The response will contain the following content:
 </ResponseField>
 
 <RequestExample>
-    ```json Example Request Body Structure
+    ```json Request
     {
         "name": "Kohler Group",
         "email": "returnpilot.example@example.com",

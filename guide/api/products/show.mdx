@@ -6,7 +6,7 @@ import ProductIdField from '/snippets/api/url-parameters/product-id.mdx';
 
 ### Overview
 
-This endpoint can be used to get a single product.
+This endpoint can be used to retrieve a product.
 
 Endpoint: `/api/v1/products/{product_id}`
 
@@ -31,9 +31,10 @@ The response will contain the following content:
     {
         "data": {
             "id": 1,
-            "name": "Red Shirt",
+            "sku": "1356284",
+            "description": "Red Shirt",
             "category": "Clothing",
-            "value": 55.71,
+            "price": 55.71,
             "length": 6,
             "width": 11,
             "height": 3,

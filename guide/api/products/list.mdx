@@ -7,7 +7,7 @@ import PaginationResponseFields from '/snippets/pagination/pagination-response-f
 
 ### Overview
 
-This endpoint can be used to retrieve a list of products.
+This endpoint can be used to retrieve products.
 
 Endpoint: `/api/v1/products/`
 
@@ -22,9 +22,9 @@ If the products are successfully retrieved, the API will return a `200 OK` statu
 The response will contain the following content:
 
 <ResponseField name="data" type="array" required>
-    An array of [Product](/guide/schemas/product) objects.
+    An `array` of [Product](/guide/schemas/product) objects.
 
-    If no products are found, the `data` field will be an empty array.
+    If no products are found, this will be an empty `array`.
 </ResponseField>
 
 <PaginationResponseFields/>
@@ -35,9 +35,10 @@ The response will contain the following content:
         "data": [
             {
                 "id": 1,
-                "name": "Red Shirt",
+                "sku": "1356284",
+                "description": "Red Shirt",
                 "category": "Clothing",
-                "value": 55.71,
+                "price": 55.71,
                 "length": 6,
                 "width": 11,
                 "height": 3,

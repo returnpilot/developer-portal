@@ -21,7 +21,7 @@ Usually, a `429 Too Many Requests` response isn't an issue. You can just send it
 
 ### Developing a backoff strategy
 
-When you receive a response, it will include the following headers that indicate your current usage of the API:
+All responses, successful or otherwise, include the following headers that indicate your current usage of the API:
 
 | Header                | Description                                          |
 | --------------------- | ---------------------------------------------------- |
@@ -37,6 +37,6 @@ If you exceed the API rate limit, then the following headers will also be presen
 
 #### Tips
 
-You can use `X-RateLimit-Remaining` to avoid hitting the rate limit. If you don't have any requests available, then there is no point sending one as it will return a `429 Too Many Requests` response.
+You can use `X-RateLimit-Remaining` to avoid hitting the rate limit. If you don't have any requests available, then there is no point sending one, as it will return a `429 Too Many Requests` response.
 
 If you hit the rate limit / receive a `429 Too Many Requests` response, then you can use `Retry-After` or `X-RateLimit-Reset` to determine when it is suitable to send additional requests to the API.

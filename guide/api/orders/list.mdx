@@ -1,0 +1,118 @@
+---
+title: 'List Orders'
+---
+
+import PaginationNotice from '/snippets/pagination/pagination-notice.mdx';
+import PaginationResponseFields from '/snippets/pagination/pagination-response-fields.mdx';
+
+### Overview
+
+This endpoint can be used to retrieve orders.
+
+Endpoint: `/api/v1/orders`
+
+Method: `GET`
+
+<Note>
+    Orders are shown in descending order.
+
+    For example, if you had 5 pages of orders, page 1 would contain the latest orders, while page 5 would contain the oldest orders.
+</Note>
+
+<PaginationNotice />
+
+### Response
+
+If the orders are successfully retrieved, the API will return a `200 OK` status code.
+
+The response will contain the following content:
+
+<ResponseField name="data" type="array" required>
+    An `array` of [Order](/guide/schemas/order) objects.
+
+    If no orders are found, this will be an empty `array`.
+</ResponseField>
+
+<PaginationResponseFields/>
+
+<ResponseExample>
+    ```json 200
+    {
+        "data": [{
+            "id": 1,
+            "origin_address": {
+                "id": 1,
+                "name": "Kohler Group",
+                "email": "parisian.kristoffer@yahoo.com",
+                "phone": "+12069536978",
+                "line_1": "193 Dach Shores Suite 632",
+                "line_2": "Apt. 300",
+                "city": "Moenburgh",
+                "region": "Colorado",
+                "post_code": "72099",
+                "country": 1,
+                "created_at": "2024-12-09 22:49:57",
+                "updated_at": "2024-12-09 22:49:57"
+            },
+            "destination_address": {
+                "id": 1,
+                "name": "Kohler Group",
+                "email": "parisian.kristoffer@yahoo.com",
+                "phone": "+12069536978",
+                "line_1": "193 Dach Shores Suite 632",
+                "line_2": "Apt. 300",
+                "city": "Moenburgh",
+                "region": "Colorado",
+                "post_code": "72099",
+                "country": 1,
+                "created_at": "2024-12-09 22:49:57",
+                "updated_at": "2024-12-09 22:49:57"
+            },
+            "parcels": [{
+                "id": 1,
+                "product": {
+                    "id": 1,
+                    "sku": "1356284",
+                    "description": "Red Shirt",
+                    "category": "Clothing",
+                    "price": 55.71,
+                    "length": 6,
+                    "width": 11,
+                    "height": 3,
+                    "weight": 2,
+                    "created_at": "2024-12-09 22:49:57",
+                    "updated_at": "2024-12-09 22:49:57"
+                },
+                "returnable": true,
+                "reason": 1,
+                "tracking_number": "EX18472",
+                "tracking_page": "https://provider.com/track/EX18472",
+                "shipping_label": "https://provider.com/label/EX18472",
+                "created_at": "2024-12-09 22:49:57",
+                "updated_at": "2024-12-09 22:49:57"
+            }],
+            "reference": "ORD-12345",
+            "status": 2,
+            "price": 22.75,
+            "carrier": "FedEx",
+            "return_url": "https://app.returnpilot.co/...",
+            "expires_at": "2024-12-09 15:39:37",
+            "created_at": "2024-12-09 15:39:37",
+            "updated_at": "2024-12-09 15:39:37"
+        }],
+        "links": {
+            "first": "https://app.returnpilot.co/api/v1/orders?page=1",
+            "last": null,
+            "prev": null,
+            "next": "https://app.returnpilot.co/api/v1/orders?page=2"
+        },
+        "meta": {
+            "current_page": 1,
+            "from": 1,
+            "path": "https://app.returnpilot.co/api/v1/orders",
+            "per_page": 20,
+            "to": 20
+        }
+    }
+    ```
+</ResponseExample>
