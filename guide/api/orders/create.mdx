@@ -24,6 +24,10 @@ Method: `POST`
     Destination address refers to the location where the return shipment will be sent.
 </Note>
 
+<Note>
+    After the order is created, the customer will receive an email containing their return link. You do not need to send it to them.
+</Note>
+
 ### Request
 
 <ResponseField name="reference" type="string" required>
@@ -287,7 +291,7 @@ The response will contain the following content:
 </ResponseField>
 
 <ResponseField name="return_url" type="string" required>
-    The URL used to schedule a return shipment.
+    The self-expiring link used to schedule a return.
 </ResponseField>
 
 <RequestExample>
