@@ -1,6 +1,6 @@
 ---
 title: 'Pagination'
-description: 'Explore how to paginate through datasets'
+description: 'Learn how to paginate through datasets'
 ---
 
 ### Overview
@@ -84,7 +84,7 @@ Paginated responses use the following structure:
         </ResponseField>
 
         <ResponseField name="links.last" type="null">
-            The URL for the last page. This will always be `null`.
+            The URL for the last page. This is always `null`.
         </ResponseField>
 
         <ResponseField name="links.prev" type="string">
@@ -106,7 +106,7 @@ Paginated responses use the following structure:
         </ResponseField>
 
         <ResponseField name="meta.from" type="number" required>
-            The starting index of the items on the current page. For example, if the page size is 20, and the second page has been returned, then it will be 21.
+            The starting index of the items on the current page.
         </ResponseField>
 
         <ResponseField name="meta.path" type="string" required>
@@ -118,7 +118,7 @@ Paginated responses use the following structure:
         </ResponseField>
 
         <ResponseField name="meta.to" type="number" required>
-            The ending index of the items on the current page. For example, if the page size is 20, and the second page has been returned, then it will be 40.
+            The ending index of the items on the current page.
         </ResponseField>
     </Expandable>
 </ResponseField>

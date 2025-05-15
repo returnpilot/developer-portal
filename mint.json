@@ -23,6 +23,7 @@
             "group" : "Get Started",
             "pages" : [
                 "guide/getting-started/introduction",
+                "guide/getting-started/libraries",
                 "guide/getting-started/updates"
             ]
         },
@@ -37,13 +38,7 @@
             ]
         },
         {
-            "group" : "Libraries",
-            "pages" : [
-                "guide/libraries/introduction"
-            ]
-        },
-        {
-            "group" : "API Endpoints",
+            "group" : "Endpoints",
             "pages" : [
                 {
                     "group": "Addresses",

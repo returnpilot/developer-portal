@@ -93,7 +93,7 @@ Method: `POST`
                 </ResponseField>
 
                 <ResponseField name="price" type="decimal" required>
-                    The price of the product in your local currency e.g 55.21.
+                    The price of the product in your organization's currency e.g 55.21.
 
                     Minimum: `1.00`
 
@@ -147,7 +147,7 @@ Method: `POST`
 <ResponseField name="origin_address_email" type="string" required>
     The contact email address.
 
-    Carriers may send one or more order tracking notifications to this email address.
+    Carriers may send one or more shipment tracking notifications to this email address.
 
     Minimum character length: `6`
 
@@ -219,7 +219,7 @@ Method: `POST`
 <ResponseField name="destination_address_email" type="string" required>
     The contact email address.
 
-    Carriers may send one or more order tracking notifications to this email address.
+    Carriers may send one or more shipment tracking notifications to this email address.
 
     Minimum character length: `6`
 

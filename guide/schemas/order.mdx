@@ -23,15 +23,15 @@ title: 'Order'
 </ResponseField>
 
 <ResponseField name="status" type="integer" required>
-    A [Status](/guide/enums/shipment-statuses) enum representing the status of the order.
+    A [Status](/guide/enums/shipment-statuses) enum representing the status of the order's return shipment.
 </ResponseField>
 
 <ResponseField name="price" type="decimal">
-    The total cost for shipping in your local currency.
+    The total cost for the return shipment in your organization's currency. If the order does not have a return shipment, then it will be `null`.
 </ResponseField>
 
 <ResponseField name="carrier" type="string">
-    The name of the provider handling the return shipment.
+    The name of the provider handling the return shipment. If the order does not have a return shipment, then it will be `null`.
 </ResponseField>
 
 <ResponseField name="return_url" type="string" required>
@@ -100,7 +100,7 @@ title: 'Order'
             "returnable": true,
             "reason": 1,
             "tracking_number": "EX18472",
-            "tracking_page": "https://provider.com/track/EX18472",
+            "tracking_url": "https://provider.com/track/EX18472",
             "shipping_label": "https://provider.com/label/EX18472",
             "created_at": "2024-12-09 22:49:57",
             "updated_at": "2024-12-09 22:49:57"
