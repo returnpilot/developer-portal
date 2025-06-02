@@ -10,6 +10,10 @@ title: 'Parcel'
     The [Product](/guide/schemas/product) details of the parcel.
 </ResponseField>
 
+<ResponseField name="status" type="integer" required>
+    A [Status](/guide/enums/parcel-statuses) enum representing the status of the parcel's return shipment.
+</ResponseField>
+
 <ResponseField name="returnable" type="boolean" required>
     Status indicating whether the parcel may be returned.
 </ResponseField>

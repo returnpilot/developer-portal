@@ -79,7 +79,7 @@
             "pages": [
                 "guide/enums/countries",
                 "guide/enums/reason-statuses",
-                "guide/enums/shipment-statuses",
+                "guide/enums/parcel-statuses",
                 "guide/enums/address-verification-statuses"
             ]
         }

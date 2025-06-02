@@ -13,9 +13,7 @@ Endpoint: `/api/v1/orders/{order_id}`
 Method: `DELETE`
 
 <Note>
-    Orders must have a status of `1 - Inactive`
-
-    Orders with any other status have a return shipment and cannot be deleted.
+    Orders that have returns (completed or otherwise) cannot be deleted.
 </Note>
 
 ### URL Parameters

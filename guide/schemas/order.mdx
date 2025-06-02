@@ -22,10 +22,6 @@ title: 'Order'
     The unique number or reference code for the order.
 </ResponseField>
 
-<ResponseField name="status" type="integer" required>
-    A [Status](/guide/enums/shipment-statuses) enum representing the status of the order's return shipment.
-</ResponseField>
-
 <ResponseField name="price" type="decimal">
     The total cost for the return shipment in your organization's currency. If the order does not have a return shipment, then it will be `null`.
 </ResponseField>
@@ -97,6 +93,7 @@ title: 'Order'
                 "created_at": "2024-12-09 22:49:57",
                 "updated_at": "2024-12-09 22:49:57"
             },
+            "status": 2,
             "returnable": true,
             "reason": 1,
             "tracking_number": "EX18472",
@@ -106,7 +103,6 @@ title: 'Order'
             "updated_at": "2024-12-09 22:49:57"
         }],
         "reference": "ORD-12345",
-        "status": 2,
         "price": 22.75,
         "carrier": "FedEx",
         "return_url": "https://app.returnpilot.co/...",
