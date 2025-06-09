@@ -76,6 +76,10 @@ Method: `POST`
     Maximum: `25`
 </ResponseField>
 
+<ResponseField name="returnable" type="boolean" required>
+    Status indicating whether the product may be returned.
+</ResponseField>
+
 ### Response
 
 If the product is successfully created, the API will return a `201 Created` status code.
@@ -96,7 +100,8 @@ The response will contain the following content:
         "length": 6,
         "width": 11,
         "height": 3,
-        "weight": 2
+        "weight": 2,
+        "returnable": true
     }
     ```
 </RequestExample>
