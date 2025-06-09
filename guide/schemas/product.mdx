@@ -38,6 +38,10 @@ title: 'Product'
     The weight of the product (in pounds, rounded up).
 </ResponseField>
 
+<ResponseField name="returnable" type="boolean" required>
+    Status indicating whether the product may be returned.
+</ResponseField>
+
 <ResponseField name="created_at" type="string" required>
     Timestamp of when the product was created.
 </ResponseField>
@@ -58,6 +62,7 @@ title: 'Product'
         "width": 11,
         "height": 3,
         "weight": 2,
+        "returnable": true,
         "created_at": "2024-12-09 22:49:57",
         "updated_at": "2024-12-09 22:49:57"
     }

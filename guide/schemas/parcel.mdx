@@ -14,10 +14,6 @@ title: 'Parcel'
     A [Status](/guide/enums/parcel-statuses) enum representing the status of the parcel's return shipment.
 </ResponseField>
 
-<ResponseField name="returnable" type="boolean" required>
-    Status indicating whether the parcel may be returned.
-</ResponseField>
-
 <ResponseField name="reason" type="integer">
     A [Reason](/guide/enums/reason-statuses) enum representing the reason the parcel was returned. If the parcel has not been returned, then it will be `null`.
 </ResponseField>
@@ -56,11 +52,11 @@ title: 'Parcel'
             "width": 11,
             "height": 3,
             "weight": 2,
+            "returnable": true,
             "created_at": "2024-12-09 22:49:57",
             "updated_at": "2024-12-09 22:49:57"
         },
         "status": 2,
-        "returnable": true,
         "reason": 1,
         "tracking_number": "EX18472",
         "tracking_url": "https://provider.com/track/EX18472",

@@ -52,10 +52,6 @@ Method: `POST`
     An order may contain up to `10` parcels.
 
     <Expandable title="parcels" defaultOpen="true">
-        <ResponseField name="returnable" type="boolean" required>
-            Status indicating whether the parcel may be returned.
-        </ResponseField>
-
         <ResponseField name="product_id" type="integer">
             The product ID to use for the parcel.
 
@@ -130,6 +126,10 @@ Method: `POST`
                     Minimum: `1`
 
                     Maximum: `25`
+                </ResponseField>
+
+                <ResponseField name="returnable" type="boolean" required>
+                    Status indicating whether the product may be returned.
                 </ResponseField>
             </Expandable>
         </ResponseField>
@@ -304,9 +304,8 @@ The response will contain the following content:
         "reference": "ORD-12345",
         "link_expires_at": 30,
         "parcels": [{
-            "returnable": true,
             "product_id": 1
-        }]
+        }],
         "origin_address_name": "Schaefer, Nolan and Wehner",
         "origin_address_email": "dave45@gmail.com",
         "origin_address_phone": "+12069536978",
@@ -315,7 +314,7 @@ The response will contain the following content:
         "origin_address_city": "Gustside",
         "origin_address_region": "Massachusetts",
         "origin_address_post_code": "17594-7013",
-        "origin_address_country": 1
+        "origin_address_country": 1,
         "destination_address_name": "Krajcik, Kuhn and Eichmann",
         "destination_address_email": "teresa93@gmail.com",
         "destination_address_phone": "+12069536978",
@@ -332,7 +331,6 @@ The response will contain the following content:
         "reference": "ORD-12345",
         "link_expires_at": 30,
         "parcels": [{
-            "returnable": true,
             "product": {
                 "sku": "1356284",
                 "description": "Red Shirt",
@@ -341,9 +339,10 @@ The response will contain the following content:
                 "length": 6,
                 "width": 11,
                 "height": 3,
-                "weight": 2
+                "weight": 2,
+                "returnable": true,
             }
-        }]
+        }],
         "origin_address_name": "Schaefer, Nolan and Wehner",
         "origin_address_email": "dave45@gmail.com",
         "origin_address_phone": "+12069536978",
@@ -352,7 +351,7 @@ The response will contain the following content:
         "origin_address_city": "Gustside",
         "origin_address_region": "Massachusetts",
         "origin_address_post_code": "17594-7013",
-        "origin_address_country": 1
+        "origin_address_country": 1,
         "destination_address_name": "Krajcik, Kuhn and Eichmann",
         "destination_address_email": "teresa93@gmail.com",
         "destination_address_phone": "+12069536978",
