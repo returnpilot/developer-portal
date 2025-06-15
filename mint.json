@@ -1,6 +1,6 @@
 {
     "$schema" : "https://mintlify.com/schema.json",
-    "name"    : "Developer Portal",
+    "name"    : "ReturnPilot Developer Portal",
     "logo"    : {
         "dark"  : "/assets/banner-dark.svg",
         "light" : "/assets/banner-light.svg"
