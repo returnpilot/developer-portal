@@ -41,12 +41,6 @@
             "group" : "Endpoints",
             "pages" : [
                 {
-                    "group": "Addresses",
-                    "pages": [
-                        "guide/api/addresses/verify"
-                    ]
-                },
-                {
                     "group": "Products",
                     "pages": [
                         "guide/api/products/list",
@@ -79,8 +73,7 @@
             "pages": [
                 "guide/enums/countries",
                 "guide/enums/reason-statuses",
-                "guide/enums/parcel-statuses",
-                "guide/enums/address-verification-statuses"
+                "guide/enums/parcel-statuses"
             ]
         }
     ],
