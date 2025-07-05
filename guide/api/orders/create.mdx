@@ -24,8 +24,10 @@ Method: `POST`
     Maximum character length: `50`
 </ResponseField>
 
-<ResponseField name="link_expires_at" type="integer" required>
+<ResponseField name="link_expires_at" type="integer">
     The number of days from now when a return can no longer be scheduled.
+
+    If not supplied, then the organization default will be used.
 
     Minimum: `10`
 
