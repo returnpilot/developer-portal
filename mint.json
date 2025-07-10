@@ -23,7 +23,6 @@
             "group" : "Get Started",
             "pages" : [
                 "guide/getting-started/introduction",
-                "guide/getting-started/libraries",
                 "guide/getting-started/updates"
             ]
         },
