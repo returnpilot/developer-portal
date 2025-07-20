@@ -34,20 +34,20 @@ Method: `POST`
     Maximum: `365`
 </ResponseField>
 
-<ResponseField name="parcels" type="array" required>
-    An `array` of parcels that are being returned.
+<ResponseField name="line_items" type="array" required>
+    An `array` of line items that are being returned.
 
-    An order may contain up to `10` parcels.
+    An order may contain up to `100` line items.
 
-    <Expandable title="parcels" defaultOpen="true">
+    <Expandable title="line_items" defaultOpen="true">
         <ResponseField name="product_id" type="integer">
-            The product ID to use for the parcel.
+            The product ID to use for the line item.
 
             Either supply this field or `product`, but do not supply both.
         </ResponseField>
 
         <ResponseField name="product" type="array">
-            The product details of the parcel.
+            The product details of the line item.
 
             Either supply this field or `product_id`, but do not supply both.
 
@@ -219,7 +219,7 @@ The response will contain the following content:
     {
         "reference": "ORD-12345",
         "link_expires_at": 30,
-        "parcels": [{
+        "line_items": [{
             "product_id": 1
         }],
         "name": "Schaefer, Nolan and Wehner",
@@ -237,7 +237,7 @@ The response will contain the following content:
     {
         "reference": "ORD-12345",
         "link_expires_at": 30,
-        "parcels": [{
+        "line_items": [{
             "product": {
                 "sku": "1356284",
                 "description": "Red Shirt",

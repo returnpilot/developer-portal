@@ -1,0 +1,50 @@
+---
+title: 'Shipment'
+---
+
+<ResponseField name="id" type="integer" required>
+    ID of the shipment.
+</ResponseField>
+
+<ResponseField name="box" type="integer" required>
+    A [Box](/guide/enums/box-types) enum representing the box size of the shipment.
+</ResponseField>
+
+<ResponseField name="status" type="integer" required>
+    A [Status](/guide/enums/shipment-statuses) enum representing the status of the shipment.
+</ResponseField>
+
+<ResponseField name="tracking_number" type="string">
+    The tracking number for the shipment.
+</ResponseField>
+
+<ResponseField name="tracking_url" type="string">
+    The URL to the tracking page for the shipment.
+</ResponseField>
+
+<ResponseField name="label_url" type="string">
+    The URL to the shipping label for the shipment.
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+    Timestamp of when the shipment was created.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+    Timestamp of when the shipment was last updated.
+</ResponseField>
+
+<ResponseExample>
+    ```json Example
+    {
+        "id": 1,
+        "box": 1,
+        "status": 2,
+        "tracking_number": "EX18472",
+        "tracking_url": "https://provider.com/track/EX18472",
+        "label_url": "https://provider.com/label/EX18472",
+        "created_at": "2024-12-09 22:49:57",
+        "updated_at": "2024-12-09 22:49:57"
+    }
+    ```
+</ResponseExample>

@@ -62,17 +62,19 @@
             "group": "Schemas",
             "pages": [
                 "guide/schemas/address",
-                "guide/schemas/parcel",
                 "guide/schemas/product",
-                "guide/schemas/order"
+                "guide/schemas/order",
+                "guide/schemas/order-line-item",
+                "guide/schemas/shipment"
             ]
         },
         {
             "group": "Enums",
             "pages": [
+                "guide/enums/box-types",
                 "guide/enums/countries",
                 "guide/enums/reason-statuses",
-                "guide/enums/parcel-statuses"
+                "guide/enums/shipment-statuses"
             ]
         }
     ],

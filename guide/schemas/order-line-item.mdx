@@ -1,0 +1,48 @@
+---
+title: 'Order Line Item'
+---
+
+<ResponseField name="id" type="integer" required>
+    ID of the order line item.
+</ResponseField>
+
+<ResponseField name="product" type="array" required>
+    The [Product](/guide/schemas/product) details of the order line item.
+</ResponseField>
+
+<ResponseField name="reason" type="integer">
+    A [Reason](/guide/enums/reason-statuses) enum representing the reason the order line item was returned. If the order line item has not been returned, then it will be `null`.
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+    Timestamp of when the order line item was created.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+    Timestamp of when the order line item was last updated.
+</ResponseField>
+
+<ResponseExample>
+    ```json Example
+    {
+        "id": 1,
+        "product": {
+            "id": 1,
+            "sku": "1356284",
+            "description": "Red Shirt",
+            "category": "Clothing",
+            "price": 55.71,
+            "length": 6,
+            "width": 11,
+            "height": 3,
+            "weight": 2,
+            "returnable": true,
+            "created_at": "2024-12-09 22:49:57",
+            "updated_at": "2024-12-09 22:49:57"
+        },
+        "reason": 1,
+        "created_at": "2024-12-09 22:49:57",
+        "updated_at": "2024-12-09 22:49:57"
+    }
+    ```
+</ResponseExample>

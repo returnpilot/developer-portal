@@ -14,8 +14,12 @@ title: 'Order'
     The [Address](/guide/schemas/address) representing where the return is shipped.
 </ResponseField>
 
-<ResponseField name="parcels" type="array" required>
-    An `array` of [Parcels](/guide/schemas/parcel) associated with the order.
+<ResponseField name="line_items" type="array" required>
+    An `array` of [Order Line Items](/guide/schemas/order-line-item) associated with the order.
+</ResponseField>
+
+<ResponseField name="shipments" type="array">
+    An `array` of [Shipments](/guide/schemas/shipment) associated with the order.
 </ResponseField>
 
 <ResponseField name="reference" type="string" required>
@@ -23,11 +27,11 @@ title: 'Order'
 </ResponseField>
 
 <ResponseField name="price" type="decimal">
-    The total cost for the return shipment in your organization's currency. If the order does not have a return shipment, then it will be `null`.
+    The total shipping cost in your organization's currency. If the order does not have any return shipments, then it will be `null`.
 </ResponseField>
 
 <ResponseField name="carrier" type="string">
-    The name of the provider handling the return shipment. If the order does not have a return shipment, then it will be `null`.
+    The name of the provider handling the return shipments. If the order does not have any return shipments, then it will be `null`.
 </ResponseField>
 
 <ResponseField name="return_url" type="string" required>
@@ -78,7 +82,7 @@ title: 'Order'
             "created_at": "2024-12-09 22:49:57",
             "updated_at": "2024-12-09 22:49:57"
         },
-        "parcels": [{
+        "line_items": [{
             "id": 1,
             "product": {
                 "id": 1,
@@ -94,11 +98,17 @@ title: 'Order'
                 "created_at": "2024-12-09 22:49:57",
                 "updated_at": "2024-12-09 22:49:57"
             },
-            "status": 2,
             "reason": 1,
+            "created_at": "2024-12-09 22:49:57",
+            "updated_at": "2024-12-09 22:49:57"
+        }],
+        "shipments": [{
+            "id": 1,
+            "box": 1,
+            "status": 2,
             "tracking_number": "EX18472",
             "tracking_url": "https://provider.com/track/EX18472",
-            "shipping_label": "https://provider.com/label/EX18472",
+            "label_url": "https://provider.com/label/EX18472",
             "created_at": "2024-12-09 22:49:57",
             "updated_at": "2024-12-09 22:49:57"
         }],
