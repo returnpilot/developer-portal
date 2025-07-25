@@ -71,7 +71,6 @@
         {
             "group": "Enums",
             "pages": [
-                "guide/enums/box-types",
                 "guide/enums/countries",
                 "guide/enums/reason-statuses",
                 "guide/enums/shipment-statuses"

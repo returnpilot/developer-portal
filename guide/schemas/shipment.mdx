@@ -6,12 +6,28 @@ title: 'Shipment'
     ID of the shipment.
 </ResponseField>
 
-<ResponseField name="box" type="integer" required>
-    A [Box](/guide/enums/box-types) enum representing the box size of the shipment.
-</ResponseField>
-
 <ResponseField name="status" type="integer" required>
     A [Status](/guide/enums/shipment-statuses) enum representing the status of the shipment.
+</ResponseField>
+
+<ResponseField name="package" type="string" required>
+    The name of the package template used for the shipment.
+</ResponseField>
+
+<ResponseField name="length" type="integer" required>
+    The length of the shipment (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="width" type="integer" required>
+    The width of the shipment (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="height" type="integer" required>
+    The height of the shipment (in inches, rounded up).
+</ResponseField>
+
+<ResponseField name="weight" type="integer" required>
+    The weight of the shipment (in pounds, rounded up).
 </ResponseField>
 
 <ResponseField name="tracking_number" type="string">
@@ -38,8 +54,12 @@ title: 'Shipment'
     ```json Example
     {
         "id": 1,
-        "box": 1,
         "status": 2,
+        "package": "Large Box",
+        "length": 6,
+        "width": 11,
+        "height": 3,
+        "weight": 2,
         "tracking_number": "EX18472",
         "tracking_url": "https://provider.com/track/EX18472",
         "label_url": "https://provider.com/label/EX18472",
